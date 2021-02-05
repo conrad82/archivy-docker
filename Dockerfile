@@ -50,6 +50,8 @@ FROM python:3.9-slim AS builder
 # Archivy version
 ARG VERSION
 
+# Install gcc
+RUN apt update && apt upgrade && apt install gcc
 # Installing pinned version of Archivy using pip
 RUN pip3 install archivy
 
@@ -67,8 +69,7 @@ ARG VCS_REF
 ARG VERSION
 
 # Installing xdg-utils and pandoc
-RUN apt update && apt upgrade && apt install gcc\
-    && addgroup -S -g 1000 archivy \
+RUN addgroup -S -g 1000 archivy \
     && adduser -h /archivy -g "User account for running Archivy" \
     -s /sbin/nologin -S -D -G archivy -u 1000 archivy \
     # Creating directory in which Archivy's files will be stored
