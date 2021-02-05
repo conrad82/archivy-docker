@@ -67,7 +67,8 @@ ARG VCS_REF
 ARG VERSION
 
 # Installing xdg-utils and pandoc
-RUN addgroup -S -g 1000 archivy \
+RUN apt update && apt upgrade && apt install gcc\
+    && addgroup -S -g 1000 archivy \
     && adduser -h /archivy -g "User account for running Archivy" \
     -s /sbin/nologin -S -D -G archivy -u 1000 archivy \
     # Creating directory in which Archivy's files will be stored
