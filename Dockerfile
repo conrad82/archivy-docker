@@ -51,7 +51,7 @@ FROM python:3.9-slim AS builder
 ARG VERSION
 
 # Install gcc
-RUN apt update && apt upgrade && apt install gcc
+RUN apt update && apt upgrade && apt install -y gcc
 # Installing pinned version of Archivy using pip
 RUN pip3 install archivy
 
