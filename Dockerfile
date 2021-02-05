@@ -50,11 +50,10 @@ FROM python:3.9-slim AS builder
 # Archivy version
 ARG VERSION
 
-# Install gcc
+# Install gcc g++ for compiling brotli
 RUN apt-get update && apt-get install -y gcc g++
 # Installing pinned version of Archivy using pip
 RUN pip3.9 install --prefix=/install archivy #==$VERSION
-# RUN pip3 install archivy
 
 # Starting with a base image of python:3.8-alpine for the final stage
 FROM python:3.9-alpine
