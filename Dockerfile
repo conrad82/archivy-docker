@@ -53,7 +53,7 @@ ARG VERSION
 # Install gcc
 RUN apt-get update && apt-get install -y gcc g++
 # Installing pinned version of Archivy using pip
-RUN pip3.9 install --prefix=/install archivy==$VERSION
+RUN pip3.9 install --prefix=/install archivy #==$VERSION
 # RUN pip3 install archivy
 
 # Starting with a base image of python:3.8-alpine for the final stage
