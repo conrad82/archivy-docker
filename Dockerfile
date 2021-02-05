@@ -56,7 +56,7 @@ RUN apt update && apt upgrade -y && apt install -y gcc g++
 RUN pip3 install archivy
 
 # Starting with a base image of python:3.8-alpine for the final stage
-FROM python:3.9
+FROM python:3.9-alpine
 
 # ARG values for injecting metadata during build time
 # NOTE: When using ARGS in a multi-stage build, remember to redeclare
@@ -69,7 +69,11 @@ ARG VCS_REF
 ARG VERSION
 
 # Installing xdg-utils and pandoc
-RUN addgroup -S -g 1000 archivy \
+RUN echo "@testing http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
+    && apk update && apk add --no-cache \
+        build-base \
+    # Creating non-root user and group for running Archivy
+    && addgroup -S -g 1000 archivy \
     && adduser -h /archivy -g "User account for running Archivy" \
     -s /sbin/nologin -S -D -G archivy -u 1000 archivy \
     # Creating directory in which Archivy's files will be stored
