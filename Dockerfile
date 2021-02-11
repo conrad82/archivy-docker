@@ -103,7 +103,7 @@ EXPOSE 5000
 STOPSIGNAL SIGTERM
 
 # Healthcheck command used to check if Archivy is up and running
-# HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=5 CMD healthcheck.sh
+HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=5 CMD healthcheck.sh
 
 # Entrypoint - Run 'entrypoint.sh' script. Any command given to 'docker container run' will be added as an argument
 # to the ENTRYPOINT command below. The 'entrypoint.sh' script needs to receive 'run' as an argument in order to set up
